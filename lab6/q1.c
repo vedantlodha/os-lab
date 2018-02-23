@@ -54,7 +54,7 @@ int main(){
                         int front=0;
                         int rear=4;
                         int time=0;
-                        while(!(front==4&&rear==0||rear==front+1)){
+                        while(!((front==4&&rear==0)||rear==front+1)){
                                 x=q[front];
                                 front=((front+1)%5);
                                 if(p[x].remainingTime<=timeQuantum){
