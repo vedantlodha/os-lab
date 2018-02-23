@@ -6,7 +6,7 @@
 int main(){
         int n,i,j,status;
         pid_t pid1,pid2;
-        printf("enter the number of string input");
+        printf("enter the number of string input:");
         scanf("%d",&n);
         char array[n][100];
         for(i=0;i<n;i++)
