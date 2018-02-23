@@ -11,6 +11,7 @@ void swap(int *a, int *b){
 }
 int main(){
         int i,j,ch,timeQuantum,x,y;
+        int priority[5];
         double awt,att;
         struct process p[5];
         printf("Enter the process details:\n");
@@ -82,8 +83,40 @@ int main(){
                         awt/=5;
                         printf("Average turnaround time=%f\nAverage waiting time=%f\n",att,awt);
                         break;
+                case 3:
+                        printf("Enter the priority of the processes with priority ranging from 1-5(1 being highest priority):");
+                        for(i=0;i<5;i++){
+                                printf("process %d:",i+1);
+                                scanf("%d",&priority[i]);
+                        }
+                        int pq[5][5];
+                        int fronta[5],reara[5];
+                        for(i=0;i<5;i++){
+                                reara[i]=-1;
+                                fronta[i]=0;
+                        }
+                        for(i=0;i<5;i++){
+                                int m=priority[i];
+                                reara[m]++;
+                                pq[m][reara[m]]=i;
+                        }
+                        time=0;
+                        for(i=0;i<5;i++){
+                                for(j=fronta[i];j<=reara[i];j++){
+                                        time=time+p[pq[i][j]].burstTime;
+                                        p[pq[i][j]].completionTime=time;
 
+                                }
+                        }
+                        for(i=0;i<5;i++){
+                                att+=p[i].completionTime;
+                                awt+=p[i].completionTime-p[i].burstTime;
+                        }
+                        att/=5;
+                        awt/=5;
+                        printf("average waiting time=%d\naverage turnaround time=%d",awt,att);
 
         }
+
 
 }
