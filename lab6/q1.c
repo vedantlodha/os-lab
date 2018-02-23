@@ -61,7 +61,6 @@ int main(){
                                         time+=p[x].remainingTime;
                                         p[x].completionTime=time;
                                         p[x].remainingTime=0;
-                                        p[x].completed=1;
                                 }
                                 else{
                                         time+=timeQuantum;
@@ -75,9 +74,8 @@ int main(){
                         for( i=0;i<5;i++){
                                 p[i].completionTime=x+p[i].burstTime;
                                 x=p[i].completionTime;
-                                p[i].waitingTime=p[i].completionTime-p[i].burstTime;
-                                awt+=p[i].waitingTime;
-                                att+=p[i].waitingTime+p[i].burstTime;
+                                att+=p[i].completionTime;
+                                awt+=(p[i].completionTime-p[i].burstTime);
                         }
                         att/=5;
                         awt/=5;
@@ -88,6 +86,7 @@ int main(){
                         for(i=0;i<5;i++){
                                 printf("process %d:",i+1);
                                 scanf("%d",&priority[i]);
+                                priority[i]-=2;
                         }
                         int pq[5][5];
                         int fronta[5],reara[5];
